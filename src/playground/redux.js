@@ -133,7 +133,7 @@ const incVal = ({ incrementBy = 1 } = {}) => {
 const decVal = ({ decrementBy = 1 } = {}) => {
   return { type: "DEC", decrementBy };
 };
-const setVal = ({ count = 1 } = {}) => {
+const setVal = ({ count } = {}) => {
   return { type: "SET", count };
 };
 const resetVal = () => ({ type: "RESET" });
