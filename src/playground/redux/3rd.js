@@ -1,9 +1,4 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
 import { createStore, combineReducers } from "redux";
-// import "./index.css";
-// import App from "./App";
-// import Rout from "./routes/AppRoutes";
 
 const incrementCount = ({ incrementBY = 1 } = {}) => ({
   type: "INCREMENT",
