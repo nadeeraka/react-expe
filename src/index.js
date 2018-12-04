@@ -1,72 +1,69 @@
 // import React from "react";
 // import ReactDOM from "react-dom";
-import { createStore, combineReducers } from "redux";
+import {
+  createStore,
+  combineReducers
+} from "redux";
+import uuid from 'uuid';
 // import "./index.css";
 // import App from "./App";
 // import Rout from "./routes/AppRoutes";
 
-const incrementCount = ({ incrementBY = 1 } = {}) => ({
-  type: "INCREMENT",
-  incrementBY
-});
+const addExpenses = ({
+  dis = '',
+  note = '',
+  amount = 0,
+  createdAt = 0
+} = {}) => ({
+  type: "ADD_EXPENSE",
+  expense: {
+    id: uuid(),
+    dis,
+    note,
+    amount,
+    createdAt,
+  }
+})
+const removeExpense = ({
+    id
+  } = {}) =>
+  ({
+    type: "REMOVE_EX",
+    id,
+  })
 
-const decrementCount = ({ decrementBy = 1 } = {}) => ({
-  type: "DECREMENT",
-  decrementBy
-});
-const setCount = ({ count = 0 } = {}) => ({
-  type: "SET",
-  count
-});
+const expense = [];
 
-const resetCount = () => ({
-  type: "RESET"
-});
-
-const store = createStore((state = { count: 0 }, action) => {
+const expecesReduser = (state = expense, action) => {
   switch (action.type) {
-    case "INCREMENT":
-      return { count: state.count + action.incrementBY };
-    case "DECREMENT":
-      return { count: state.count - action.decrementBy };
-    case "SET":
-      return {
-        count: action.count
-      };
-    case "RESET":
-      return { count: 0 };
-
+    case "ADD_EXPENSE":
+      return [
+        ...state, action.expense
+      ]
     default:
       return state;
   }
-});
+};
+
+const filter = []
+const filterReduser = (state = filter, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+const store = createStore(
+  combineReducers({
+    expenses: expecesReduser,
+    filter: filterReduser
+  })
+);
 store.subscribe(() => {
   console.log(store.getState());
-});
+})
 
-store.dispatch({
-  type: "INCREMENT",
-  incrementBY: 5
-});
-store.dispatch({
-  type: "INCREMENT"
-});
-store.dispatch({
-  type: "DECREMENT"
-});
-store.dispatch({
-  type: "DECREMENT",
-  decrementBy: 4
-});
-store.dispatch({
-  type: "RESET"
-});
-store.dispatch({
-  type: "SET",
-  count: 5
-});
-
-store.dispatch(incrementCount({ incrementBY: 5 }));
-store.dispatch(decrementCount({ decrementBy: 5 }));
-store.dispatch(setCount({ count: 100 }));
-store.dispatch(resetCount());
+store.dispatch(addExpenses({
+  dis: 'rent',
+  amount: 100
+}))
