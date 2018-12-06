@@ -39,7 +39,12 @@ const expecesReduser = (state = expense, action) => {
     case "ADD_EXPENSE":
       return [
         ...state, action.expense
-      ]
+      ];
+    case "REMOVE_EX":
+      return state.filter(({
+        id
+      }) => id !== action.id);
+
     default:
       return state;
   }
@@ -59,11 +64,30 @@ const store = createStore(
     filter: filterReduser
   })
 );
-store.subscribe(() => {
+let itemOne = store.subscribe(() => {
   console.log(store.getState());
-})
+});
+let itemTow = store.subscribe(() => {
+  console.log(store.getState());
+});
+
 
 store.dispatch(addExpenses({
   dis: 'rent',
   amount: 100
 }))
+console.log(itemOne)
+// store.dispatch(removeExpense({
+//   id: itemOne.expense.id
+// }))
+
+//spread oprator 
+
+let home = {
+  color: 'blue',
+  storys: 'single'
+}
+
+console.log({
+  ...home
+})
