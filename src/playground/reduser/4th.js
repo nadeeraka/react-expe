@@ -151,14 +151,14 @@ const coffee = store.dispatch(
 console.log(coffee.expences.id);
 console.log(rent.expences.id);
 
-// store.dispatch(exRemove({ id: coffee.expences.id }));
-// store.dispatch(exRemove({ id: car.expences.id }));
-// store.dispatch(exEdit(rent.expences.id, { amount: 8000 }));
-// store.dispatch(setFilterText("rent"));
-// store.dispatch(setFilterText());
-//sort by amount
-//sort by date
-// store.dispatch(sortByAmount());
-// store.dispatch(sortByDate());
+store.dispatch(exRemove({ id: coffee.expences.id }));
+store.dispatch(exRemove({ id: car.expences.id }));
+store.dispatch(exEdit(rent.expences.id, { amount: 8000 }));
+store.dispatch(setFilterText("rent"));
+store.dispatch(setFilterText());
+sort by amount
+sort by date
+store.dispatch(sortByAmount());
+store.dispatch(sortByDate());
 store.dispatch(setStartDate(123));
 store.dispatch(setEndDate(567));
