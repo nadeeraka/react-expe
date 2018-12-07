@@ -9,20 +9,30 @@ class App extends Component {
   state = {
     posts: []
   };
-  componentDidMount() {
-    // fetch("https://jsonplaceholder.typicode.com/posts")
-    //   .then(res => res.json())
-    //   .then(r => console.log(r))
-    //   .then(data => {
-    //     this.setState(() => ({ posts: data }));
-    //   });
-    const url = "http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC'";
-    axios.get(url).then(res => {
-      // this.setState({ posts: res.data });
-      console.log(res.data);
-    });
-    //.then(res => );
-  }
+  onData = async () => {
+    const url = "https://api.spotify.com/v1/albums";
+    const data = await axios(url);
+    // const json_data = data.json();
+    console.log(data.data);
+  };
+  // componentDidMount() {
+  //   // fetch("https://jsonplaceholder.typicode.com/posts")
+  //   //   .then(res => res.json())
+  //   //   .then(r => console.log(r))
+  //   //   .then(data => {
+  //   //     this.setState(() => ({ posts: data }));
+  //   //   });
+  //   //const url = "http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC'";
+  //   // axios.get(url).then(res => {
+  //   //   // this.setState({ posts: res.data });
+  //   //   console.log(res.data);
+  //   // });
+  //   //.then(res => );
+  //   axios("https://jsonplaceholder.typicode.com/posts").then(res => {
+  //     //this.setState(() => ({ posts: res.data }));
+  //     console.log(res);
+  //   });
+  // }
 
   render() {
     // const postItems = this.state.posts.map(post => (
@@ -35,6 +45,7 @@ class App extends Component {
     return (
       <div>
         {x}
+        <button onClick={this.onData}>Ok</button>
         <Post />
       </div>
     );
